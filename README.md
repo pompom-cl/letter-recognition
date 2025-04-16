@@ -1,5 +1,5 @@
 # Klasifikasi Huruf
-Proposal Machine Learning
+Proposal proyek untuk kelas CDS2122 - Pembelajaran Mesin
 
 ## Bab 1: Pendahuluan
 
