@@ -28,7 +28,7 @@ Sumber data tersebut dihasilkan melalui gambar dari NIST (https://www.nist.gov/s
 
 ### 2.2 Informasi Dataset
 Sumber Dataset: [link](https://archive.ics.uci.edu/dataset/59/letter+recognition)
-Dataset yang digunakan masih perlu diproses agar tahap training, testing, dan prediksi lebih efisien. Proyek UCI Machine Learning: Letter Recognition ([link](https://archive.ics.uci.edu/dataset/59/letter+recognition)) juga melakukan klasifikasi huruf, proyek ini menggunakan dataset yang terdiri dari 17 fitur yang diekstrak dari gambar huruf. Data memiliki 17 fitur dengan tipe data pada setiap fitur adalah integer, kecuali fitur lettr, yaitu kategorikal.
+Dataset yang digunakan masih perlu diproses agar tahap training, testing, dan prediksi lebih efisien. Dataset yang digunakan masih perlu diproses agar tahap training, testing, dan prediksi lebih efisien. Dari 370.00 raw data, diambil 29.169 data yang diharapkan dapat merepresentasi 26 huruf. Proyek UCI Machine Learning: Letter Recognition ([link](https://archive.ics.uci.edu/dataset/59/letter+recognition)) juga melakukan klasifikasi huruf, proyek ini menggunakan dataset yang terdiri dari 17 fitur yang diekstrak dari gambar huruf. Data memiliki 17 fitur dengan tipe data pada setiap fitur adalah integer, kecuali fitur lettr, yaitu kategorikal.
 
 - lettr: huruf kapital (target klasifikasi)
 - x-box, y-box, width, high, onpix, x-bar, y-bar, x2bar, y2bar, xybar, x2ybr, xy2br, x-ege, xegvy, y-ege, yegvx: fitur numerik (0-15)
@@ -41,6 +41,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_
 ```
 
 ### 2.3.1 Random Forest Classifier
+
 Random Forest Classifier merupakan salah satu algoritma machine learning yang menghasilkan model dari berbagai pohon keputusan. Kumpulan pohon keputusan akan dilatih secara independen dengan teknik bootstrap aggregating (bagging). Bootstrap adalah teknik statistik yang memungkinkan estimasi distribusi sampel dengan melakukan resampling (pengambilan sampel berulang kali).
 Untuk klasifikasi dan prediksi, Random Forest dapat menghitung tingkat kepentingan (feature importance), salah satunya adalah metode Mean Decrease in Accuracy. Metode Mean Decrease in Accuracy akan menghitung akurasi pada data OOB. Terdapat sekitar 36.8% dari data asli yang tidak termasuk dalam bootstrap sample untuk setiap pohon tertentu yang disebut sebagai Out-of-Bag (OOB) samples. Jika akurasi turun secara signifikan, maka fitur tersebut penting. Pengetahuan ini akan mempengaruhi bagaimana setiap pohon menentukan prediksi. Setelah setiap pohon memberikan hasil prediksinya, hasil prediksi yang sama dan terbanyak akan dipilih sebagai hasil prediksi final. Teknik ini disebut sebagai Voting Majority:
 
@@ -74,6 +75,12 @@ Keterangan:
 
 
 Dalam implementasinya menggunakan bahasa python untuk menunjukkan proses pelatihan model K-Nearest Neighbors (KNN) dengan pipeline, hyperparameter tuning (GridSearchCV), dan evaluasi model menggunakan Cross Validation (baik K-Fold biasa maupun StratifiedKFold), berikut akurasi dari model dengan berbagai metode evaluasi:
+
+| **Metode Evaluasi**           | **Accuracy** | **Precision** | **Recall** | **F1-Score** |
+|------------------------------|--------------|----------------|------------|--------------|
+| K-Fold CV                    | 80.75%       | 81.07%         | 80.74%     | 80.67%       |
+| Stratified K-Fold CV         | 80.46%       | 80.76%         | 80.46%     | 80.38%       |
+| Stratified + Best Model      | 81.46%       | 81.66%         | 81.46%     | 81.36%       |
 
 ### 2.3.3 Multilayer Perceptron (MLP)
 
